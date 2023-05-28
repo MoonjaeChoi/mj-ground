@@ -25,25 +25,23 @@ export async function getServerSideProps(context: NextPageContext) {
   }
 }
 
-const Auth = () => {
+const AuthRegister = () => {
   const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [variant, setVariant] = useState('register');
+  const [password, setPassword] = useState('');
+
+  const [variant, setVariant] = useState('login');
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login');
-  }, []);
-
-  const toggleVariantFake = useCallback(() => {
   }, []);
 
   const login = useCallback(async () => {
     try {
       await signIn('email', {
         email,
-        name,
         redirect: false,
         callbackUrl: '/'
       });
@@ -52,7 +50,7 @@ const Auth = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [email, name, router]);
+  }, [email, router]);
 
   const register = useCallback(async () => {
     try {
@@ -79,19 +77,28 @@ const Auth = () => {
               {variant === 'login' ? 'Sign in' : 'Register'}
             </h2>
             <div className="flex flex-col gap-4">
-              <Input
+              {variant === 'register' && (
+                <Input
                   id="name"
                   type="text"
                   label="Username"
                   value={name}
                   onChange={(e: any) => setName(e.target.value)} 
                 />
+              )}
               <Input
                 id="email"
                 type="email"
-                label="Email"
+                label="Email or phone number"
                 value={email}
                 onChange={(e: any) => setEmail(e.target.value)} 
+              />
+              <Input
+                type="password" 
+                id="password" 
+                label="Password" 
+                value={password}
+                onChange={(e: any) => setPassword(e.target.value)} 
               />
             </div>
             <button onClick={variant === 'login' ? login : register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
@@ -106,11 +113,9 @@ const Auth = () => {
               </div>
             </div>
             <p className="text-neutral-500 mt-12">
-              {/* {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'} */}
-              Already have an account?
-              <span onClick={toggleVariantFake} className="text-white ml-1 hover:underline cursor-pointer">
-                {/* {variant === 'login' ? 'Create an account' : 'Login'} */}
-                Login
+              {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'}
+              <span onClick={toggleVariant} className="text-white ml-1 hover:underline cursor-pointer">
+                {variant === 'login' ? 'Create an account' : 'Login'}
               </span>
               .
             </p>
@@ -121,4 +126,4 @@ const Auth = () => {
   );
 }
 
-export default Auth;
+export default AuthRegister;

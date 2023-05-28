@@ -3,8 +3,6 @@ import prismadb from '@/libs/prismadb';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    console.log('register:',req.method)
-    console.log('register:',req.method?.length)
     if (req.method !== 'POST') {
       return res.status(405).end();
     }
