@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MovieInterface } from '@/types';
 import MovieCard from '@/components/MovieCard';
-import { isEmpty } from 'lodash';
+//import { isEmpty } from 'lodash';
 
 interface MovieListProps {
   data: MovieInterface[];
@@ -10,8 +10,16 @@ interface MovieListProps {
 }
 
 const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
-  if (isEmpty(data)) {
-    return null;
+  // if (isEmpty(data)) {
+  //   return null;
+  // }
+
+  
+  if (typeof data == 'object' && Object.keys(data).length === 0){
+    console.log('object is empty')
+    return null
+  } else {
+    console.log('object is not empty') // this gets printed
   }
 
   return (

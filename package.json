@@ -23,7 +23,6 @@
     "eslint-config-next": "13.4.4",
     "formik": "^2.2.9",
     "framer-motion": "^10.12.16",
-    "lodash": "^4.17.21",
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.1",
     "next": "13.4.4",
