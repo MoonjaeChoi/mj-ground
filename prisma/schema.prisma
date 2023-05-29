@@ -92,17 +92,17 @@ model Movie {
 
 model am_comm_code {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  comm_type String?   @db.VarChar(255)
-  comm_code String?   @db.VarChar(255)
-  comm_value String?  @db.VarChar(255)
-  comm_desc String?   @db.VarChar(255)
-  ref1      String?   @db.VarChar(255)
-  ref2      String?   @db.VarChar(255)
-  ref3      String?   @db.VarChar(255)
-  ref4      String?   @db.VarChar(255)
-  ref5      String?   @db.VarChar(255)
-  ref6      String?   @db.VarChar(255)
-  ref7      String?   @db.VarChar(255)
+  comm_type String?   
+  comm_code String?   
+  comm_value String?  
+  comm_desc String?   
+  ref1      String?   
+  ref2      String?   
+  ref3      String?   
+  ref4      String?   
+  ref5      String?   
+  ref6      String?   
+  ref7      String?   
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
 }
@@ -117,9 +117,9 @@ model am_comm_code {
 // ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 model am_keyword_suggests {
-  id         String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  keyword    String?  @db.VarChar(255)
-  extract_dt String?  @db.VarChar(255)
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  keyword    String?  
+  extract_dt String?  
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
 }
@@ -143,17 +143,17 @@ model am_keyword_suggests {
 // ) ENGINE=InnoDB AUTO_INCREMENT=470 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 
 model am_news_related_keywords {
-  id           String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  user_email   String   @db.VarChar(256)
-  keyword      String   @db.VarChar(256)
-  from_dt      String   @db.VarChar(12)
-  news_title   String   @db.VarChar(256)
-  news_desc    String?  @db.Text
-  news_link    String?  @db.VarChar(512)
-  img_link     String?  @db.VarChar(512)
-  press        String?  @db.VarChar(80)
-  published    String?  @db.VarChar(80)
-  published_ts String?  @db.VarChar(80)
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  user_email   String   
+  keyword      String   
+  from_dt      String   
+  news_title   String   
+  news_desc    String?  
+  news_link    String?
+  img_link     String?
+  press        String?
+  published    String?
+  published_ts String?
   createdAt    DateTime @default(now()) @updatedAt
   updatedAt    DateTime @default(now()) @updatedAt
 }
@@ -172,13 +172,13 @@ model am_news_related_keywords {
 // ) ENGINE=InnoDB AUTO_INCREMENT=556 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 model am_work_master {
-  id         String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  user_email String?  @db.VarChar(255)
-  work_no    String?  @db.VarChar(255)
-  chat_id    String?  @db.VarChar(255)
-  type       String?  @db.VarChar(255)
-  role       String?  @db.VarChar(255)
-  message    String?  @db.Text
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  user_email String?  
+  work_no    String?  
+  chat_id    String?  
+  type       String?  
+  role       String?  
+  message    String?  
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
 }
@@ -220,36 +220,36 @@ model am_work_master {
 // ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 model am_work_properties {
-  id                       String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  user_email               String?  @db.VarChar(255)
-  work_no                  String?  @db.VarChar(255)
-  draft_word               String?  @db.VarChar(255)
-  draft_word_fixed_yn      String?  @db.VarChar(1)
-  extension_related_yn     String?  @db.VarChar(1)
-  suggested_keywords       String?  @db.Text
-  subject_from_gpt         String?  @db.Text
-  article_subject          String?  @db.VarChar(255)
-  article_subject_fixed_yn String?  @db.VarChar(1)
-  article_contents         String?  @db.Text
-  suggest_title            String?  @db.Text
-  sub1_prompt              String?  @db.VarChar(255)
-  sub2_prompt              String?  @db.VarChar(255)
-  sub3_prompt              String?  @db.VarChar(255)
-  sub4_prompt              String?  @db.VarChar(255)
-  sub5_prompt              String?  @db.VarChar(255)
-  sub6_prompt              String?  @db.VarChar(255)
-  sub7_prompt              String?  @db.VarChar(255)
-  sub8_prompt              String?  @db.VarChar(255)
-  sub9_prompt              String?  @db.VarChar(255)
-  sub1_contents            String?  @db.Text
-  sub2_contents            String?  @db.Text
-  sub3_contents            String?  @db.Text
-  sub4_contents            String?  @db.Text
-  sub5_contents            String?  @db.Text
-  sub6_contents            String?  @db.Text
-  sub7_contents            String?  @db.Text
-  sub8_contents            String?  @db.Text
-  sub9_contents            String?  @db.Text
+  id                       String   @id @default(auto()) @map("_id") @db.ObjectId
+  user_email               String?  
+  work_no                  String?  
+  draft_word               String?  
+  draft_word_fixed_yn      String?  
+  extension_related_yn     String?  
+  suggested_keywords       String?  
+  subject_from_gpt         String?  
+  article_subject          String?  
+  article_subject_fixed_yn String?  
+  article_contents         String?  
+  suggest_title            String?  
+  sub1_prompt              String?  
+  sub2_prompt              String?  
+  sub3_prompt              String?  
+  sub4_prompt              String?  
+  sub5_prompt              String?  
+  sub6_prompt              String?  
+  sub7_prompt              String?  
+  sub8_prompt              String?  
+  sub9_prompt              String?  
+  sub1_contents            String?  
+  sub2_contents            String?  
+  sub3_contents            String?  
+  sub4_contents            String?  
+  sub5_contents            String?  
+  sub6_contents            String?  
+  sub7_contents            String?  
+  sub8_contents            String?  
+  sub9_contents            String?  
   createdAt                DateTime @default(now())
   updatedAt                DateTime @default(now()) @updatedAt
 }
