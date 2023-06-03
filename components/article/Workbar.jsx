@@ -7,10 +7,12 @@ import ChatRow from "./workbar/ChatRow"
 import NewChat from "./workbar/NewChat"
 import { useSelector } from 'react-redux'
 
-import useCurrentUser from '@/hooks/useCurrentUser';
+import useCurrentUser from '@/hooks/useCurrentUser'
+import useWorkNumbers from '@/hooks/useWorkNumbers'
 
 const Workbar = ({ formValues }) => {
   const { data: currentUser } = useCurrentUser();
+  const { data: currentWorks = [] } = useWorkNumbers();
 
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -22,32 +24,32 @@ const Workbar = ({ formValues }) => {
   //   return state.work?.userEmail
   // })
 
-  const getWorkChat = async () => {
-    try {
-      let payload = { email: currentUserEmail,}
-      console.log(payload.email);
-      const result = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/work/getWorkByNo`, {params: payload})
-      const works = await updateCurrent(result)
-    } catch (err) {
-      //setErr(err.message);
-    } finally {
-    }
-  }
+  // const getWorkChat = async () => {
+  //   try {
+  //     let payload = { email: currentUserEmail,}
+  //     console.log(payload.email);
+  //     const result = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/work/getWorkByNo`, {params: payload})
+  //     const works = await updateCurrent(result)
+  //   } catch (err) {
+  //     //setErr(err.message);
+  //   } finally {
+  //   }
+  // }
 
-  const updateCurrent = async (e) => {
-    let rows = e.data
-    let items = []
-    let index = 0
-    rows.forEach(function (element) { 
-        index = index + 1
-        items.push({
-            key : index,
-            work_no: element.work_no,
-        })
-    });
-    setWorks(items)
-    return items
-  }
+  // const updateCurrent = async (e) => {
+  //   let rows = e.data
+  //   let items = []
+  //   let index = 0
+  //   rows.forEach(function (element) { 
+  //       index = index + 1
+  //       items.push({
+  //           key : index,
+  //           work_no: element.work_no,
+  //       })
+  //   });
+  //   setWorks(items)
+  //   return items
+  // }
 
   function handleRemove(id) {
     const newList = works.filter((item) => item.work_no !== id)
@@ -66,7 +68,7 @@ const Workbar = ({ formValues }) => {
 
   useEffect(() => {
       getWorkChat()
-  }, [currentUserEmail]);
+  }, [currentUser]);
 
   const slideLeft = () => {
     var slider = document.getElementById('slider')
