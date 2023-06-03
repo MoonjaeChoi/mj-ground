@@ -11,6 +11,8 @@ import Footer  from "./Footer"
 import Nav  from "./Nav"
 import Workbar  from "./Workbar"
 
+import ChatRow from "./workbar/ChatRow"
+import NewChat from "./workbar/NewChat"
 
 export {
   ArticleMaker,
@@ -25,4 +27,6 @@ export {
   Footer,
   Nav,
   Workbar,
+  ChatRow,
+  NewChat,
 };

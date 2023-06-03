@@ -1,28 +1,26 @@
-import { close, logo, menu } from "../assets"
-import { navLinks } from "../constants"
+import { close, menu } from "../assets"
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Link from 'next/link'
-import { RxSketchLogo, RxDashboard, RxPerson, RxArrowLeft} from 'react-icons/rx'
-import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { MdChevronLeft, MdChevronRight} from 'react-icons/md'
-
-import ChatRow from '@/components/chat/ChatRow'
-import NewChat from '@/components/chat/NewChat'
-import styles from '@/style'
-import { quinan } from "../assets"
-
+import ChatRow from "./workbar/ChatRow"
+import NewChat from "./workbar/NewChat"
 import { useSelector } from 'react-redux'
 
+import useCurrentUser from '@/hooks/useCurrentUser';
+
 const Workbar = ({ formValues }) => {
+  const { data: currentUser } = useCurrentUser();
+
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [works, setWorks] = useState([])
 
-  const currentUserEmail = useSelector(state => {
-    return state.work?.userEmail
-  })
+  const currentUserEmail = currentUser?.email
+
+  // const currentUserEmail = useSelector(state => {
+  //   return state.work?.userEmail
+  // })
 
   const getWorkChat = async () => {
     try {
