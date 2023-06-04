@@ -1,12 +1,9 @@
 import { close, menu } from "../assets"
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 import { MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import ChatRow from "./workbar/ChatRow"
 import NewChat from "./workbar/NewChat"
-import { useSelector } from 'react-redux'
-
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useWorkNumbers from '@/hooks/useWorkNumbers'
 

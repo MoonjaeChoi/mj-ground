@@ -38,22 +38,22 @@ const Step200Form = ({ formValues, onChange }) => {
         onChange(value)
     };
 
-    useEffect(() => {
-        optionsWarna.length = 0
-        if (formValues.suggestedKeywords.length > 0)
-        {
-            let notes = []
-            let no =0 
-            formValues.suggestedKeywords.forEach(function (element) { 
-                no = no + 1
-                notes.push({
-                    value: no,
-                    label: element
-                })
-            });
-            setOptionsWarna(notes)
-        }
-    }, [formValues.suggestedKeywords])
+    // useEffect(() => {
+    //     optionsWarna.length = 0
+    //     if (formValues.suggestedKeywords.length > 0)
+    //     {
+    //         let notes = []
+    //         let no =0 
+    //         formValues.suggestedKeywords.forEach(function (element) { 
+    //             no = no + 1
+    //             notes.push({
+    //                 value: no,
+    //                 label: element
+    //             })
+    //         });
+    //         setOptionsWarna(notes)
+    //     }
+    // }, [formValues.suggestedKeywords])
 
       return (
       <div className='section' id='second'>
@@ -75,9 +75,9 @@ const Step200Form = ({ formValues, onChange }) => {
               2. 목적을 고려<br/>
               문서의 목적에 맞게 키워드를 선택하는 것이 중요합니다. <br/>
               예를 들어, 정보를 전달하는 문서인 경우, <br/>
-              "알림", "가이드", "설명"과 같은 키워드를 선택할 수 있습니다.<br/>
+              알림, 가이드, 설명과 같은 키워드를 선택할 수 있습니다.<br/>
               반면, 문제를 해결하거나 창의적인 아이디어를 제시하는 문서인 경우, <br/>
-              "해결책", "아이디어", "혁신"과 같은 키워드를 선택할 수 있습니다.<br/>
+              해결책, 아이디어, 혁신과 같은 키워드를 선택할 수 있습니다.<br/>
               <br/>
               <br/>
               적절한 키워드를 선택하고, <br/>

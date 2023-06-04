@@ -50,6 +50,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
 
       const { workId, postfix, value } = req.body;
+
+      // var keyname = '';
+      // var payload = { };
+      // payload[keyname + postfix] = value
+
   
       const existingWork = await prismadb.am_work_properties.findUnique({
         where: {
@@ -60,33 +65,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!existingWork) {
         throw new Error('Invalid ID');
       }
-      const name = 'Bob'
-  //    await prismadb.$queryRaw`SELECT 'My name is ${name}';`
-      //const workProperties = await prismadb.$runCommandRaw`SELECT 'My name is ${name}';`
-      //const workProperties = await prismadb.$transaction`SELECT 'My name is ${name}';`
+      
+      await prismadb.am_work_properties.update({
+        where: { id: workId },
+        data: { draft_word: 'Updated post title' },
+      })
   
-      // const user = await prismadb.am_work_properties.update({
-      //   where: {
-      //     AND: [
-      //       {
-      //         user_email: {
-      //           in: currentUser?.email,
-      //         },
-      //       },
-      //       {
-      //         id: {
-      //           in: workId,
-      //         },
-      //       }
-      //     ]
-      //     user_email: currentUser.email || '',
-      //   },
-      //   data: {
-      //     draft_word: {
-      //       push: 'null'
-      //     }
-      //   }
-      // });
+//       const user = await prismadb.am_work_properties.update({
+//         where: {
+//               user_email: currentUser.email
+//               //id: workId,
+// //          user_email: currentUser.email || '',
+//         },
+//         data: {
+//           draft_word: 'null'
+//         }
+//       });
   
    //   return res.status(200).json(user);
     }
