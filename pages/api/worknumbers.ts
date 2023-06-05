@@ -48,14 +48,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // POST START
     if (req.method === 'POST') {
-
+      const { currentUser } = await serverAuth(req, res);
       const { workId, postfix, value } = req.body;
 
-      // var keyname = '';
-      // var payload = { };
-      // payload[keyname + postfix] = value
-
-  
       const existingWork = await prismadb.am_work_properties.findUnique({
         where: {
           id: workId,
@@ -65,10 +60,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!existingWork) {
         throw new Error('Invalid ID');
       }
+
+      // var keyname = '';
+      // var payload = { };
+      // payload[keyname + postfix] = value
+
+      const user = await prismadb.user.update({
+        where: {
+          email: currentUser.email || '',
+        },
+        data: { currentWorkId: workId},
+      });
+
+      // let postFix : string = postfix
+      // let Value : any = value
       
       await prismadb.am_work_properties.update({
         where: { id: workId },
-        data: { draft_word: 'Updated post title' },
+        data: `{ ${postfix}: ${value} }`,
       })
   
 //       const user = await prismadb.am_work_properties.update({

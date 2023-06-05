@@ -4,24 +4,22 @@ import { NextPageContext } from 'next';
 import { getSession } from 'next-auth/react';
 //import { useRouter } from 'next/router';
 import { Workbar } from '@/components/article'
+import { IFormInfo } from '@/components/article/IObjType';
 
-
-// export async function getServerSideProps(context: NextPageContext) {
-//   const session = await getSession(context);
-
-//   if (session) {
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       }
-//     }
-//   }
-
-//   return {
-//     props: {}
-//   }
-// }
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      }
+    }
+  }
+  return {
+    props: {}
+  }
+}
 
 const Article = () => {
 //  const router = useRouter();
@@ -39,8 +37,9 @@ const afterPrompt2 = 'In this article, make the topic sentence into one sentence
 const afterPrompt3 = 'summarize the text less than 20 words, bullet points'
 const afterPrompt4 = 'Create and answer three specific questions that would allow someone reading this article to check their understanding of the content. And number each question so you can tell them apart.'
 
-  const initialValues = {
-    loading:false,      
+  const initialValues : IFormInfo = {
+    id:"",
+    loading:false,
     draftword:"",
     newsItems:[],
     suggestedKeywords:[],
@@ -79,8 +78,6 @@ const afterPrompt4 = 'Create and answer three specific questions that would allo
   };
 
   const [values, setValues] = useState(initialValues);
-
-
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">

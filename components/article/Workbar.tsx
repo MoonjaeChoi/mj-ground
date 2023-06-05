@@ -1,19 +1,46 @@
-import { close, menu } from "../assets"
+import { close, menu } from '../../assets'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import { MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import ChatRow from "./workbar/ChatRow"
 import NewChat from "./workbar/NewChat"
+
+import axios from 'axios';
+import { useCallback, useMemo } from 'react'
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/outline';
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useWorkNumbers from '@/hooks/useWorkNumbers'
 
-const Workbar = ({ formValues }) => {
-  const { data: currentUser } = useCurrentUser();
-  const { data: currentWorks = [] } = useWorkNumbers();
+import { IFormInfo } from '@/components/article/IObjType';
+
+interface WorkBarProps {
+  formValues: IFormInfo
+}
+
+interface IWorkItem {
+  key: number
+  work_no: string
+}
+
+const Workbar: React.FC<WorkBarProps> = ({formValues}) => {
+  const { data: currentUser, mutate } = useCurrentUser()
+  const { mutate: mutateFavorites } = useWorkNumbers()
+  
+  const isFavorite = useMemo(() => {
+    const list = currentUser?.workIds || []
+
+    return list.includes(formValues.id);
+  }, [currentUser, formValues.id]);
+
+  function handleRemove(id: string) {
+    const newList = works.filter((item) => item.work_no !== id)
+
+    setWorks(newList)
+  }
 
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-  const [works, setWorks] = useState([])
+  const [works, setWorks] = useState<Array<IWorkItem>>([])
 
   const currentUserEmail = currentUser?.email
 
@@ -48,14 +75,10 @@ const Workbar = ({ formValues }) => {
   //   return items
   // }
 
-  function handleRemove(id) {
-    const newList = works.filter((item) => item.work_no !== id)
+  
 
-    setWorks(newList)
-  }
-
-  function handleAdd(id) {
-    let newItem = {
+  function handleAdd(id: string) {
+    let newItem : IWorkItem = {
         key: works.length+1,
         work_no: id,
     }
@@ -64,20 +87,20 @@ const Workbar = ({ formValues }) => {
   }
 
   useEffect(() => {
-      getWorkChat()
+      //getWorkChat()
   }, [currentUser]);
 
   const slideLeft = () => {
-    var slider = document.getElementById('slider')
+    var slider : any = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 500
   }
 
   const slideRight = () => {
-    var slider = document.getElementById('slider')
+    var slider : any = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft + 500
   }
 
-  const onClicked = async (id) => {
+  const onClicked = async (id : string) => {
     setActive(id)
     setToggle(false)
   }
@@ -131,7 +154,7 @@ const Workbar = ({ formValues }) => {
                 } ${index === works.length - 1 ? "mr-0" : "mr-10"}`}
                 onClick={() => onClicked(work.work_no)}
                 >
-                <ChatRow formValues={formValues} work_no={work.work_no} handleRemove={handleRemove}/>
+                <ChatRow work_no={work.work_no} handleRemove={handleRemove}/>
                 </li>
                 ))
             }

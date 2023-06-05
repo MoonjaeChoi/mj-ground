@@ -21,9 +21,11 @@ model User {
   emailVerified DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  currentWorkId String?
   sessions Session[]
   accounts Account[]
   favoriteIds String[] @db.ObjectId
+  workIds String[] @db.ObjectId
 }
 
 model Account {
@@ -250,6 +252,8 @@ model am_work_properties {
   sub7_contents            String?  
   sub8_contents            String?  
   sub9_contents            String?  
+  delete_yn                String?
+  status                   String?
   createdAt                DateTime @default(now())
   updatedAt                DateTime @default(now()) @updatedAt
 }
