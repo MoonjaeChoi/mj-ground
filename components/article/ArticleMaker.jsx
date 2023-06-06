@@ -10,8 +10,9 @@ const override = {
 import { ChatReq, Step100Form, Step200Form, Step300Form, Step400Form, Step500Form
        , QuillEditor, Footer, Nav, Workbar } from './'
 
+/*
 import { getWorkInfo } from '@/pages/api/UserContext'
-
+*/
 
 const ArticleMaker = () => {
 
@@ -108,7 +109,7 @@ const afterPrompt4 = 'Create and answer three specific questions that would allo
     const { name, value, type, checked } = e.target;
     setValues({ ...values, [name]: type === "checkbox" ? checked : value });
   };
-
+/*
   useEffect( () => {
     async function sub() {
       if (currentWorkNo.length>0)
@@ -121,7 +122,7 @@ const afterPrompt4 = 'Create and answer three specific questions that would allo
     }
     sub()
   }, [currentWorkNo])
-
+*/
   useEffect(() => {
     console.log('init2 : ' + JSON.stringify(values.suggestedKeywords))
   }, [values.suggestedKeywords])

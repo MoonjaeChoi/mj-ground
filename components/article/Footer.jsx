@@ -1,6 +1,6 @@
 import styles from "@/style"
-import { footerLinks, socialMedia } from "../constants"
-import { mjreadbook } from "../assets"
+import { footerLinks, socialMedia } from "../../constants"
+import { mjreadbook } from "../../assets"
 import Image from 'next/image'
 
 // discovery

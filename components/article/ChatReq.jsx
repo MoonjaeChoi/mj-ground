@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from "react"
 import { Configuration, OpenAIApi } from "openai"
-import { Loading } from "./agent/Loading"
-import { Header } from "./agent/Header"
-import { Setting } from "./agent/Setting"
+// import { Loading } from "./agent/Loading"
+// import { Header } from "./agent/Header"
+// import { Setting } from "./agent/Setting"
 
 // DB 저장
 import axios from 'axios';
 
-//////////////// [START] reduxjs/toolkit /////////////////////////
-import { useSelector } from 'react-redux'
-//////////////// [END] reduxjs/toolkit   /////////////////////////
-import { setProperties } from '@/pages/api/UserContext'
+// //////////////// [START] reduxjs/toolkit /////////////////////////
+// import { useSelector } from 'react-redux'
+// //////////////// [END] reduxjs/toolkit   /////////////////////////
+// import { setProperties } from '@/pages/api/UserContext'
 
+const setProperties = (a,b,c) => {
+  return null
+}
 
 //const ChatReq = (props, ref) => { 
 const ChatReq = ({formValues, step, setIsLoading }) => { 
@@ -19,15 +22,10 @@ const ChatReq = ({formValues, step, setIsLoading }) => {
   const keyNamePrompt = `sub${step}_prompt`
   const keyNameContents = `sub${step}_contents`
   
-  //////////////// [START] reduxjs/toolkit /////////////////////////
-  const currentUserEmail = useSelector(state => {
-    return state.work?.userEmail
-  })
 
-  const currentWorkNo = useSelector(state => {
-    return state.work?.workNo
-  })
-//////////////// [END] reduxjs/toolkit   /////////////////////////
+  const currentWorkNo  = 0
+  const currentUserEmail = '1@a.b'
+
 
   // Real-time return data
   const [result, setResult] = useState("");
@@ -191,8 +189,11 @@ const ChatReq = ({formValues, step, setIsLoading }) => {
         </div>
       </div>
     </div>
+{/* 
       {showSetting && <Header onClearSession={handleClearSession} onSetting={handleSetting}/>}
-      {showSetting && <Setting onClose={() => setShowSetting(false)}/>}
+      {showSetting && <Setting onClose={() => setShowSetting(false)}/>} */}
+
+
     </>
   );
 }

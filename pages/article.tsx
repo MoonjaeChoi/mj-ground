@@ -8,14 +8,15 @@ import { IFormInfo } from '@/components/article/IObjType';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
-  if (session) {
+  if (!session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/auth',
         permanent: false,
       }
     }
   }
+
   return {
     props: {}
   }
@@ -80,9 +81,11 @@ const afterPrompt4 = 'Create and answer three specific questions that would allo
   const [values, setValues] = useState(initialValues);
 
   return (
+    <>
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
       <Workbar formValues={values} />
     </div>
+    </>
   );
 }
 

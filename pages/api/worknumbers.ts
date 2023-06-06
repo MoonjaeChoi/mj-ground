@@ -51,6 +51,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { currentUser } = await serverAuth(req, res);
       const { workId, postfix, value } = req.body;
 
+      if (workId ==null)
+      {
+        console.log('workid 가 진짜 NULL')
+        const property = await prismadb.am_work_properties.create({
+          data: {
+            user_email : currentUser.email,
+          }
+        })
+    
+        return res.status(200).json(property);
+      }
+
       const existingWork = await prismadb.am_work_properties.findUnique({
         where: {
           id: workId,

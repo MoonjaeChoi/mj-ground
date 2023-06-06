@@ -7,11 +7,14 @@ import React, { useState, useMemo, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 import axios from 'axios';
-//////////////// [START] reduxjs/toolkit /////////////////////////
-import { setGlobal } from '@/store/sliceWorkInfo'
-import { useDispatch, useSelector } from 'react-redux'
-//////////////// [END] reduxjs/toolkit   /////////////////////////
-import { setProperties, getProperties } from '@/pages/api/UserContext'
+
+//import { setProperties, getProperties } from '@/pages/api/UserContext'
+const setProperties = (a,b,c) => {
+  return null
+}
+const getProperties = (a,b,c) => {
+  return null
+}
 
 const modules = {
     toolbar: [
@@ -31,13 +34,8 @@ const modules = {
 
 const QuillEditor = ({articleType, formValues}) => { 
     //////////////// [START] reduxjs/toolkit /////////////////////////
-    const currentUserEmail = useSelector(state => {
-      return state.work?.userEmail
-    })
-
-    const currentWorkNo = useSelector(state => {
-      return state.work?.workNo
-    })
+    const currentUserEmail = '0'
+    const currentWorkNo = 0
     //////////////// [END] reduxjs/toolkit   /////////////////////////
     var keyNameContents = ''
     switch (articleType) {
